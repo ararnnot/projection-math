@@ -1,0 +1,10 @@
+# From the project root:
+git init
+git add .
+git commit -m "First working version"
+
+# Create an empty repo on GitHub (click “New repository”).
+# Then connect and push:
+git remote add origin https://github.com/USERNAME/webserver-tools.git
+git branch -M main           # only if ‘main’ does not exist yet
+git push -u origin main
