@@ -5,18 +5,16 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "projection-math"          # what people will `pip install`
 version = "0.1.0"
-description = "Small helpers for our web-server project"
+description = "Mathematical calculations for semantic projections"
 readme = "README.md"
 requires-python = ">=3.9"
-authors = [{name = "Your Name", email = "you@example.com"}]
+authors = [{name = "Roger Arnau", email = "ararnnot@posgrado.upv.es"}]
 license = {text = "MIT"}
 dependencies = [
-    "fastapi>=0.110",
-    "uvicorn>=0.29"
 ]
 
 [project.optional-dependencies]
-dev = ["pytest", "ruff", "pre-commit"]
+dev = []
 
 [project.urls]
-Homepage = "https://github.com/USERNAME/projection-math"
+Homepage = "https://github.com/ararnnot/projection-math"
