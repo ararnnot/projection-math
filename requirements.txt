@@ -1,8 +1,5 @@
-os
-re
 numpy
 pandas
-typing
 gensim
-sklearn
-sklearn_extra
+scikit-learn
+scikit-learn-extra

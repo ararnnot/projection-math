@@ -11,13 +11,11 @@ requires-python = ">=3.8"
 authors = [{name = "Roger Arnau", email = "ararnnot@posgrado.upv.es"}]
 license = {text = "MIT"}
 dependencies = [
-    're',
     'numpy',
     'pandas',
-    'typing',
     'gensim',
-    'sklearn',
-    'sklearn_extra'
+    'scikit-learn',
+    'scikit-learn-extra'
 ]
 
 [project.optional-dependencies]
