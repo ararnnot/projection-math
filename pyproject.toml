@@ -7,7 +7,7 @@ name = "projection-math"
 version = "0.1.0"
 description = "Mathematical calculations for semantic projections"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.8,<=3.11"
 authors = [{name = "Roger Arnau", email = "ararnnot@posgrado.upv.es"}]
 license = {text = "MIT"}
 dependencies = [
