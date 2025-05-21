@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 # Recall: pip install git+https://github.com/ararnnot/projection-math.git
-from projection_math.clustering_sources.methods import ClusterSources
+from projection_math import ClusterSources
 
 def cluster_sources_from_matrix(
     data_projections: np.ndarray,

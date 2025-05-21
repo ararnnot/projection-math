@@ -7,7 +7,7 @@ from typing import (
 )
 
 # Recall: pip install git+https://github.com/ararnnot/projection-math.git
-from projection_math.compare_universes.methods import (
+from projection_math import (
     Compare_Universes,
     extract_s4_number,
     preload_word_embedding
