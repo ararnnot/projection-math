@@ -1,1 +1,4 @@
-*projection_math.egg-info/
+projection_math.egg-info/
+.pytest_cache/
+projection_math/__pycache__/
+tests/__pycache__/
