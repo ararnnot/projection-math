@@ -107,6 +107,8 @@ class ClusterSources:
             raise ValueError("Only one of df or data_projections should be provided.")
         if df is not None:
             self.df = df.copy()
+            if column_term is None:
+                self.df[column_term] = term_fixed
         if data_projections is not None:
             df_matrix = pd.DataFrame(data_projections, columns = universe_names, index = source_names)
             self.df = df_matrix \

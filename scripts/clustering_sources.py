@@ -106,6 +106,23 @@ def cluster_sources_from_dataframe(
 
 if __name__ == "__main__":
     
+    """
+    FOR THE WEB PLATFORM:
+    Probably, the best option is to use this first example with the matrix
+    and lists of universes / sources.
+    
+    Relevant parameters that can be changed:
+        - n_clusters: the number of clusters
+        - distance: the distance metric to use for clustering
+            ('cosine_diss', 'euclidean', 'normeuclidean')
+    Relevant outputs (as key: value) to show:
+        - clusters: cluster of each source
+        - result_by_cluster: this are the new projections that sumarize the previous
+        
+    Computational cost (approximately, maximum case):
+        O( len(sources) * len(universe) * n_clusters**2 )
+    """
+    
     # Example data with matrix
     data = np.array([
         [0.1, 0.2, 0.3],

@@ -138,6 +138,27 @@ def extend_projection(
 
 if __name__ == "__main__":
     
+    """
+    FOR THE WEB PLATFORM:
+    If one term is projected into two diferent universes
+    and the extensions are compared, use the first example,
+    here the error shows how 'compatible' are the two projections.
+    If is projected only into one universe, use the second example
+    to obtain an extyension (approximation) of the projection onto the other.
+    
+    Relevant parameters that can be changed:
+        - extend_methods: recommended method 2 or 3:
+            1: Extension method S4.1: uniform weight distribution
+            2: Extension method S4.2: hierarchical weight distribution
+            3: Extension method S4.3: McShane-Whitney extension
+    Relevant outputs (as key: value) to show:
+        - extension_2_S4*: extension of projection 1 to universe 2 using extension*
+        - error_2_S4*: error of the extension of projection 1 to universe 2 using extension*
+        
+    Computational cost (approximately, maximum case):
+        O( L**2 ),   L = max( len(universe1), len(universe2) )
+    """
+    
     # Example of comparison
     
     universe_1 = ["this", "is an", "example"]
