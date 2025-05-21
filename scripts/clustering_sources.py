@@ -13,7 +13,7 @@ def cluster_sources_from_matrix(
     n_clusters: int,
     distance: str = 'cosine_diss',
     term_fixed: str = None
-) -> dict[pd.DataFrame, dict, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+) -> dict:
     """
     Cluster sources based on their projections.
 
@@ -62,7 +62,7 @@ def cluster_sources_from_dataframe(
     column_indx_features: str = 'Universe',
     column_projection: str = 'Projection',
     column_term: str = 'Term',
-) -> dict[pd.DataFrame, dict, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+) -> dict:
     """
     Cluster sources based on their projections.
 

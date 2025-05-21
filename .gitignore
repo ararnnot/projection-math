@@ -2,3 +2,4 @@ projection_math.egg-info/
 **/__pycache__/
 resources/
 .pytest_cache/
+.vscode/

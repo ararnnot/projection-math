@@ -7,7 +7,11 @@ from typing import (
 )
 
 # Recall: pip install git+https://github.com/ararnnot/projection-math.git
-from projection_math.compare_universes.methods import Compare_Universes, extract_s4_number
+from projection_math.compare_universes.methods import (
+    Compare_Universes,
+    extract_s4_number,
+    preload_word_embedding
+)
 
 def universe_comparison(
     universe1: Union[Sequence[str], pd.Series, np.ndarray],
@@ -18,7 +22,7 @@ def universe_comparison(
     extend_universe: Union[int, list] = 2,
     word_embedding_path: str = None,
     distance: str = 'cosine_diss'
-) -> dict[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+) -> dict:
     """
     Compare two universes based on their projections.
     
@@ -46,12 +50,15 @@ def universe_comparison(
             
     if not isinstance(extend_universe, list): extend_universe = [extend_universe]
     
+    if word_embedding_path is None: word_embedding = None
+    else: word_embedding = preload_word_embedding(word_embedding_path)
+    
     comparison = Compare_Universes(
         universe1 = universe1,
         universe2 = universe2,
         projection1 = projection1,
         projection2 = projection2,
-        word_embedding = word_embedding_path,
+        word_embedding = word_embedding,
         distance = distance
     )
     
@@ -82,7 +89,7 @@ def extend_projection(
     extend_methods: Union[int, str, list] = [1, 2, 3],
     word_embedding_path: str = None,
     distance: str = 'cosine_diss'
-) -> dict[np.ndarray, np.ndarray, np.ndarray]:
+) -> dict:
     """
     Extend the projection of universe1 to universe2 (which projection is not given).
     
@@ -105,13 +112,16 @@ def extend_projection(
     for i in range(len(extend_methods)):
         if isinstance(extend_methods[i], str):
             extend_methods[i] = extract_s4_number(extend_methods[i])
+            
+    if word_embedding_path is None: word_embedding = None
+    else: word_embedding = preload_word_embedding(word_embedding_path)
     
     comparison = Compare_Universes(
         universe1 = universe1,
         universe2 = universe2,
         projection1 = projection1,
         projection2 = None,
-        word_embedding = word_embedding_path,
+        word_embedding = word_embedding,
         distance = distance
     )
     
@@ -130,10 +140,11 @@ if __name__ == "__main__":
     
     # Example of comparison
     
-    universe_1 = ["term1", "term2", "term3"]
-    universe_2 = ["other1", "other2"]
+    universe_1 = ["this", "is an", "example"]
+    universe_2 = ["hello", "world"]
     projection1 = [0.1, 0.2, 0.3]
     projection2 = [0.4, 0.5]
+    
     word_embedding_path = "resources/glove.6B.50d.kv"
     
     result = universe_comparison(
@@ -142,13 +153,14 @@ if __name__ == "__main__":
         projection1 = projection1,
         projection2 = projection2,
         extend_methods = [1, 2, 3],
-        extend_universe = 2,
+        extend_universe = 1,
         word_embedding_path = word_embedding_path
     )
     
     print("Comparison Result:")
     for key, value in result.items():
         print(f"{key}: {value}")
+        
         
     # Example of extension
     

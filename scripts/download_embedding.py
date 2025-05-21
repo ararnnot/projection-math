@@ -33,8 +33,6 @@ print("Conversion complete.")
 print("Loading embeddings...")
 model = KeyedVectors.load_word2vec_format(w2v_output_path, binary=False)
 
-print("Most similar to 'king':", model.most_similar("king", topn=5))
-
 model.save(os.path.join(glove_dir, "glove.6B.50d.kv"))
 
 files_to_delete = [

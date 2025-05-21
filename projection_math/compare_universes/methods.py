@@ -27,14 +27,14 @@ def preload_word_embedding(embedding_path: str = 'resources/glove.6B.50d.kv'):
 def _get_term_embedding(term: str, embedding: KeyedVectors) -> np.ndarray:
     # When a term has many words, compute the mean of the vectors
     words = term.split()
-    vecs = [embedding[w] for w in words if w in embedding]
-    if not vecs:
-        try: dim = embedding.vector_size
-        except AttributeError: dim = next(iter(embedding.values())).shape[0]
-        return np.zeros(dim)
+    vecs = []
+    for w in words:
+        if w not in embedding:
+            raise KeyError(f"Word '{w}' not found in the embedding.")
+        vecs.append(embedding[w])
     return np.mean(vecs, axis=0)
 
-def extract_s4_number(s: str) -> int | None:
+def extract_s4_number(s: str) -> Union[int, None]:
     """
     Conver to number the extension if its give by its name.
     Extracts the number from a string formatted as "S4X" where X is a digit.
@@ -72,14 +72,13 @@ class Compare_Universes:
     ):
         
         if word_embedding is None:
-            print(' (!) Word embeddingdoes not exists. Loading now...')
-            preload_word_embedding()
+            word_embedding = preload_word_embedding()
         
         if not isinstance(universe1, np.ndarray): universe1 = np.array(universe1)
         if not isinstance(universe2, np.ndarray): universe2 = np.array(universe2)
         if not isinstance(projection1, np.ndarray): projection1 = np.array(projection1)
         if projection2 is None:
-            projection2 = np.zeros_like(universe2)
+            projection2 = np.zeros(len(universe2), dtype=float)
         if not isinstance(projection2, np.ndarray): projection2 = np.array(projection2)
         
         self.universe1 = universe1
@@ -126,7 +125,7 @@ class Compare_Universes:
             self.E41_Pu2ext = Ext
             self.E41_E2 = Err
         else:
-            W1 = ( 1 - self.d.T / self.D1 ) / ( len(self.universe2) - 1 )
+            W1 = ( 1 - self.d.T / self.D1.T ) / ( len(self.universe2) - 1 )
             Ext = self.projection2 @ W1
             Err = (( Ext - self.projection1 )**2).sum()**0.5
             self.E41_Pu1ext = Ext
@@ -166,7 +165,7 @@ class Compare_Universes:
                         rest = rest * act_d[j]
                     else:
                         weights[j] = rest
-                        
+            
             Ext[i] = np.array(proj) @ weights
         
         Err = (( Ext - orig )**2).sum()**0.5
